@@ -1,0 +1,13 @@
+Version 3 - Uploaded on 16th August 2016 - about 21:50 hrs
+
+Modified question 3. Instead of using the 1000 values from the transformed gaussian, i.e., part 4 of question 1, use the 1000 values from the original gaussian, i.e., from part 1 of question 1. Use the mean and covariance, however, computed from part 2 of question 2.
+
+
+Version 2.1 - Uploaded on 15th August 2016 - about 21:35 hrs
+
+Modified comment in get_error_ellipse.m, where students were asked to check that det(sigma_hat) was < 0. Should have been the other way.
+
+
+Version 2 - Uploaded on 15th August 2016 - about 2130 hrs
+
+Footnote added on first page of question pdf, to resolve ambiguous cases of selecting xyz according to ID number.

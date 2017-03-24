@@ -1,0 +1,73 @@
+\documentclass{article}
+
+\title{\textbf{CSE 483: Mobile Robotics - Assignment 01}}
+\author{Due: 17th August 2016, 2300 hrs}
+
+\begin{document}
+
+\maketitle
+
+\section*{General Instructions}
+\begin{enumerate}
+\item The assignments are to be done in Matlab. The code provided along with the assignments may run in Octave as well, but we provide no guarantees on that front.
+\item Plagiarism is strictly prohibited. The popular \emph{MOSS} tool will be employed for code plagiarism detection.
+\item The functions that you write for this assigments will be called directly in future assignments. So, keep the functions modular, the code clean, and commented.
+\item \textbf{In all your scripts and functions, add the following random seed '201601', for repeatability}. If you do not know what a random seed is, look it up. In Matlab, just adding the line \emph{rng(201601)} at the top of the script, or at the beginning of a function definition would suffice. Ensure that this is called only once per script/function.
+\end{enumerate}
+
+\section{Warm-up tasks}
+
+The following set of tasks aims to familiarize you with manipulating multivariate gaussians in Matlab.
+
+\begin{enumerate}
+\item Sample 1000 values from a multivariate gaussian distribution with mean $\left[xyz, xyz\right]^T$, where $xyz$ are the last three digits of your (IIIT) ID number\footnote{Before selecting $xyz$ to be the last three digits of your ID number, kindly check that the matrix $diag([x, y])$ is non-singular and has a positive determinant. \textbf{If this is not the case, choose $xyz$ as 483 (the course code!).}}, and covariance $diag([2, 4])$. Use the Matlab function \texttt{mvnrnd} for the same.
+\item For the samples generated in the above question, compute the mean and the covariance. Do NOT use the Matlab functions \texttt{mean} and \texttt{cov} for this task.
+\item Draw a (2D) scatter plot that shows the points sampled. Compute the value of the probability density function (PDF) at each of the points. Color each point according to its PDF value (use any color scheme you like, but make sure there is a color index on the right side of the plot). For reference, you could look at the lecture slides on multivariate gaussians.
+\item Transform the samples generated in the first part of this task by applying a linear transform $Ax + b$, where $A = diag(\left[x, y\right])$, and $b = [z, z]^T$ ($x,y,z$ are the last three digits of your ID number respectively).
+\item For the transformed samples, compute the mean and the covariance.Do NOT use the Matlab functions \texttt{mean} and \texttt{cov} for this task.
+\item Draw a (2D) scatter plot that shows the \textbf{transformed points}. Compute the value of the probability density function (PDF) at each of the points. Color each point according to its PDF value (use any color scheme you like, but make sure there is a color index on the right side of the plot). For reference, you could look at the lecture slides on multivariate gaussians.
+\end{enumerate}
+
+\section{Sampling sanely from mvnrnd}
+
+By now, you would have (hopefully) used \texttt{mvnrnd} multiple times. This task is to make sure that the values you obtain from \texttt{mvnrnd} are \emph{sane}, i.e., they are confined to a particular confidence ellipse of the gaussian.
+
+Very frequently, \texttt{mvnrnd} ends up producing values well outside the 75\% confidence ellipse of the chosen multivariate gaussian. In this assignment, we will write our own wrapper for \texttt{mvnrnd}. Let's call it \texttt{sane\_mvnrnd}.
+
+\begin{enumerate}
+\item The function file \texttt{sane\_mvnrnd.m} has been provided along with the assignment. It currently has stubs that you need to fill out to get the function working \emph{correctly}. The function file has relevant documentation, listed out in the form of comments. Look out for all \texttt{TODO} comments. They indicate the positions in the file where you would add code. Edit the file and ensure it works, i.e, it generates \emph{sane} samples.
+\end{enumerate}
+
+
+\section{Plotting the error ellipse}
+
+In this task, we aim to visualize the error ellipse for a two-dimensional gaussian. The task would comprise of the following steps.
+
+\begin{enumerate}
+\item Take the 1000 samples you obtained in \textbf{question 1} of the warm-up tasks (part 1). Use the mean and covariance computed in \textbf{question 2} of the warp-up tasks.
+\item Compute the eigenvalues and eigenvectors for the covariance matrix. Determine which of them is the larger eigenvalue.
+\item Follow the other steps listed out in the comments of \texttt{get\_error\_ellipse.m} and fill in the stubs. For reference, visit the following webpage \\ \verb|http://www.visiondummy.com/2014/04/draw-error-ellipse|\\\verb|-representing-covariance-matrix/|
+\item Once you complete the function correctly, run the function to get the values \texttt{ellipse\_x} and \texttt{ellipse\_y}. Then, run the following command to plot the ellipse. \\
+\texttt{plot(ellipse\_x, ellipse\_y)}
+\end{enumerate}
+
+\section{Deliverables}
+\begin{enumerate}
+\item A zipped (\texttt{.zip}) folder (try not to use any other format such as \texttt{.bz2}, \texttt{.tar.gz}, etc.) whose name is only your ID number, eg. \texttt{201507666.zip}. The folder should have a \texttt{report.pdf} file which contains the answers for the warm-up tasks, i.e, section 1 of the assignment, and the error ellipse plots for section 3 of the assignment.
+\item Additionally the folder \texttt{01\_Sampling}, provided along with the assignment, must be present. The \texttt{.m} files inside this folder must contain the modified code.
+\item Please keep the input/output signatures for each function the same. Also do not change the directory structure, and do not add additional files. The code will be evaluated on a set of test cases, and common input/output signatures are required for automated testing.
+\end{enumerate}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
